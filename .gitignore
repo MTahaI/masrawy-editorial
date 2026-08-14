@@ -1,0 +1,36 @@
+# حماية صارمة — لا يُرفع أي مما يلي على GitHub
+
+# 1) الأسرار والمفاتيح — ممنوع منعًا باتًا
+*.env
+.env.*
+*key*
+*secret*
+*token*
+*credential*
+red_teamer.py
+!*.example
+
+# 2) ملفات الإعدادات المحلية التي قد تحتوي أسرارًا
+opencode.jsonc.bak
+opencode.jsonc.old
+
+# 3) الحزم والاعتماديات (تُعاد تثبيتها)
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# 4) السجلات والملفات المؤقتة
+*.log
+*.tmp
+*.bak
+*.old
+
+# 5) نماذج أولاما — ثقيلة ولا تصلح للمستودع
+models/
+*.gguf
+
+# 6) النسخ الاحتياطية المحلية المتداخلة
+backup_*/
+workspace/

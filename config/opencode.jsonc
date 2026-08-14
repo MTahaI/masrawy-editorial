@@ -1,0 +1,119 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "opencode/big-pickle",
+  "small_model": "opencode/big-pickle",
+  "default_agent": "chief-editor",
+  "provider": {
+    "opencode": {
+      "options": {
+        "setCacheKey": true
+      }
+    },
+    "google": {
+      "models": {
+        "gemini-3.5-flash": {
+          "name": "Gemini 3.5 Flash",
+          "attachment": true,
+          "modalities": {
+            "input": ["text", "image", "audio"],
+            "output": ["text"]
+          }
+        }
+      }
+    },
+    "groq": {
+      "options": {
+        "apiKey": "${env:GROQ_API_KEY}"
+      }
+    },
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (Local)",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "qwen2.5:1.5b": {
+          "name": "Qwen 2.5 1.5B (Local)"
+        },
+        "qwen2.5:1.5b-ctx": {
+          "name": "Qwen 2.5 1.5B (Local, ctx 8192)"
+        }
+      }
+    }
+  },
+  "subagent_depth": 2,
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "reserved": 10000
+  },
+  "mcp": {
+    "puppeteer-server": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-puppeteer"],
+      "enabled": true
+    },
+    "tavily": {
+      "type": "remote",
+      "url": "https://mcp.tavily.com/mcp/?tavilyApiKey=${env:TAVILY_API_KEY}",
+      "enabled": true
+    },
+    "gdelt": {
+      "type": "local",
+      "command": ["npx", "-y", "@cyanheads/gdelt-mcp-server@latest"],
+      "env": {
+        "MCP_TRANSPORT_TYPE": "stdio",
+        "MCP_LOG_LEVEL": "info"
+      },
+      "enabled": true
+    },
+    "corroborate": {
+      "type": "local",
+      "command": ["npx", "-y", "corroborate-mcp"],
+      "enabled": true
+    },
+    "footnote": {
+      "type": "local",
+      "command": ["python", "-m", "footnote_mcp"],
+      "enabled": true
+    },
+    "local-rag": {
+      "type": "local",
+      "command": ["python", "C:/Users/m122s/AppData/Local/Temp/opencode/local-rag-mcp/server.py"],
+      "enabled": true
+    },
+    "news-factcheck": {
+      "type": "local",
+      "command": ["python", "-m", "factchck.news_factcheck"],
+      "env": {
+        "GEMINI_API_KEY": "${env:GEMINI_API_KEY}",
+        "PYTHONPATH": "C:/Users/m122s/AppData/Local/Temp/opencode/news-factchecker/src"
+      },
+      "enabled": true
+    }
+  },
+  "instructions": [
+    "rules/constitution.md",
+    "rules/tone.md",
+    "rules/بصمة_الجلسة.md",
+    "rules/معجم_الحظر_والترجيح.md",
+    "rules/التحقق_المصادري.md",
+    "rules/protocols.md",
+    "rules/أتمتة_التحقق.md"
+  ],
+  "tools": {
+    "bash": true
+  },
+  "plugin": ["opencode-gemini-auth@latest"],
+  "permission": {
+    "bash": { "python *": "allow", "*": "ask" }
+  },
+  "skills": {
+    "paths": [
+      "C:/Users/m122s/.config/opencode/skills",
+      "C:/Users/m122s/.config/opencode/skills/buriedsignals",
+      "D:/مصراوي/.agents/skills"
+    ]
+  }
+}
