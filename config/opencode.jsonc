@@ -54,9 +54,9 @@
       "command": ["npx", "-y", "@modelcontextprotocol/server-puppeteer"],
       "enabled": true
     },
-    "tavily": {
-      "type": "remote",
-      "url": "https://mcp.tavily.com/mcp/?tavilyApiKey=${env:TAVILY_API_KEY}",
+    "fetch": {
+      "type": "local",
+      "command": ["python", "-m", "mcp_server_fetch"],
       "enabled": true
     },
     "gdelt": {
