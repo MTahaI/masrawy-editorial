@@ -80,7 +80,7 @@
     },
     "local-rag": {
       "type": "local",
-      "command": ["python", "C:/Users/m122s/AppData/Local/Temp/opencode/local-rag-mcp/server.py"],
+      "command": ["python", "C:/Users/m122s/Tools/local-rag-mcp/server.py"],
       "enabled": true
     },
     "news-factcheck": {
@@ -88,7 +88,7 @@
       "command": ["python", "-m", "factchck.news_factcheck"],
       "env": {
         "GEMINI_API_KEY": "${env:GEMINI_API_KEY}",
-        "PYTHONPATH": "C:/Users/m122s/AppData/Local/Temp/opencode/news-factchecker/src"
+        "PYTHONPATH": "C:/Users/m122s/Tools/news-factchecker/src"
       },
       "enabled": true
     }

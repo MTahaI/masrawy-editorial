@@ -55,14 +55,14 @@ GROQ_API_KEY     ← من console.groq.com (للمحرر السحابي)
 pip install footnote-mcp
 python -m playwright install chromium   # اختياري لكن موصى به
 
-# news-factcheck (فحص العناوين بـ Gemini)
-git clone https://github.com/adityapawar327/news-factchecker-mcp.git $env:TEMP\news-factchecker
-pip install -r $env:TEMP\news-factchecker\requirements.txt
+# news-factcheck (فحص العناوين بـ Gemini) — يُثبت في C:\Users\<اسمك>\Tools\
+git clone https://github.com/adityapawar327/news-factchecker-mcp.git C:\Users\<اسمك>\Tools\news-factchecker
+pip install -r C:\Users\<اسمك>\Tools\news-factchecker\requirements.txt
 
-# local-rag (فهرسة محلية) — بعد التعديل أدناه
-git clone https://github.com/overlorde/local-rag-mcp.git $env:TEMP\local-rag-mcp
+# local-rag (فهرسة محلية) — يُثبت في C:\Users\<اسمك>\Tools\
+git clone https://github.com/overlorde/local-rag-mcp.git C:\Users\<اسمك>\Tools\local-rag-mcp
 # استبدل config.py بالنسخة المعدلة في tools/local-rag-config.py (نماذج صغيرة)
-pip install -r $env:TEMP\local-rag-mcp\requirements.txt
+pip install -r C:\Users\<اسمك>\Tools\local-rag-mcp\requirements.txt
 ```
 ملاحظات:
 - `corroborate` (npx -y corroborate-mcp) يُحمَّل تلقائيًا من npm — لا يحتاج تثبيتًا.

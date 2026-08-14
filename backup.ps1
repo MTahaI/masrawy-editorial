@@ -6,7 +6,7 @@ $ErrorActionPreference = "Stop"
 $base = "D:\masrawy-backup"
 $configSrc = "C:\Users\m122s\.config\opencode"
 $projectSrc = "D:\مصراوي"
-$tempTools = "C:\Users\m122s\AppData\Local\Temp\opencode"
+$toolsSrc = "C:\Users\m122s\Tools"
 
 Write-Host "=== نسخ احتياطي لنظام التحرير ===" -ForegroundColor Cyan
 
@@ -19,8 +19,8 @@ Get-ChildItem "$configSrc\skills" -Directory | Where-Object { $_.Name -notmatch 
     Copy-Item $_.FullName "$base\skills\" -Recurse -Force
 }
 Copy-Item "$projectSrc\*" "$base\project\" -Recurse -Force -ErrorAction SilentlyContinue
-if (Test-Path "$tempTools\local-rag-mcp\config.py") { Copy-Item "$tempTools\local-rag-mcp\config.py" "$base\tools\local-rag-config.py" -Force }
-if (Test-Path "$tempTools\Modelfile-ctx") { Copy-Item "$tempTools\Modelfile-ctx" "$base\tools\Modelfile-ctx" -Force }
+if (Test-Path "$toolsSrc\local-rag-mcp\config.py") { Copy-Item "$toolsSrc\local-rag-mcp\config.py" "$base\tools\local-rag-config.py" -Force }
+if (Test-Path "$toolsSrc\Modelfile-ctx") { Copy-Item "$toolsSrc\Modelfile-ctx" "$base\tools\Modelfile-ctx" -Force }
 Write-Host "      تم تحديث الملفات" -ForegroundColor Green
 
 # 2) فحص أمني: رفض المتابعة إذا وُجد سر
