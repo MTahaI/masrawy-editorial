@@ -19,11 +19,14 @@
   (`python news_search.py --query "..." --region sa --lang ar --max 10`). يعمل من جهازنا (مثبت: 92 نتيجة عربية).
 - **البحث الحديث المقيّد زمنيًا:** `--hours 2` يقصر النتائج على آخر ساعتين حسب تاريخ النشر الفعلي (مثبت: دقة إلى الدقيقة،
   ويعرض عمر كل خبر "منذ X دقيقة"). يُستخدم إلزاميًا عند طلب "بحث حديث/آخر أخبار".
+- **بحث مراكز الأبحاث:** سكربت `tools/think-tank-search/think_tank_search.py` — RSS مباشر + site:، يعرض اسم المحلل والجهة،
+  ومع `--extract` يفتح أفضل 5 نتائج ويبني روابط تمييز نصي `#:~:text=` (استخدم الكلمة بلغتين: `"اليمن Yemen"`).
 - **استخراج المحتوى:** سيرفر MCP `fetch` الرسمي (`python -m mcp_server_fetch` من PyPI) + webfetch المدمج.
 - **الصفحات العنيدة/الجافافاسكريبت:** puppeteer-server ثم مسار الطوارئ Jina Reader:
   `https://r.jina.ai/<URL>` (مجاني بلا مفتاح للاستخدام المحدود).
 - **لا Tavily ولا Exa** — أُزيلا نهائيًا (كانا معطوبين بمفاتيح مدفوعة غير صالحة).
 - **ملاحظة بحث 2026-08:** DuckDuckGo وMojeek محجوبان/ضعيفان من هذا الجهاز؛ Google News RSS هو المحرك المجاني الموثوق عمليًا.
+  مهارة `osint-search` أُصلحت لتعتمد عليه مع فلترة إلزامية على القائمة البيضاء (وكالات + صحافة عربية + مراكز أبحاث).
 
 ## إعادة البناء على جهاز جديد (بالترتيب)
 
@@ -78,13 +81,13 @@ pip install -r C:\Users\<اسمك>\Tools\local-rag-mcp\requirements.txt
 ```
 ملاحظات:
 - `corroborate` (npx -y corroborate-mcp) يُحمَّل تلقائيًا من npm — لا يحتاج تثبيتًا.
-- `puppeteer-server` و`tavily` و`gdelt` منصات Remote/موجودة في الإعدادات.
+- `puppeteer-server` و`gdelt` منصات Remote/موجودة في الإعدادات. (`tavily` أُزيل نهائيًا من الإعدادات.)
 - إعدادات MCP موجودة أصلًا في `config/opencode.jsonc` — لا حاجة لإعادة كتابتها.
 
 ### 7. إعادة التشغيل والتحقق
 - أعد تشغيل OpenCode Desktop كليًا
 - تحقق: `/models` يعرض qwen2.5:1.5b و qwen2.5:1.5b-ctx و gemini-3.5-flash
-- تحقق: سيرفرات MCP السبعة تظهر (puppeteer, tavily, gdelt, corroborate, footnote, local-rag, news-factcheck)
+- تحقق: سيرفرات MCP السبعة تظهر (puppeteer, fetch, gdelt, corroborate, footnote, local-rag, news-factcheck)
 
 ## حماية النسخة
 - هذا المستودع **خاص** — لا تجعله عامًا أبدًا.
